@@ -1,8 +1,7 @@
 """MELO: 1D cortisol diffusion through a PVA hydrogel.
 
-Purpose
--------
-Estimate how rapidly cortisol reaches the MIP-facing side of a hydrogel
+Purpose:
+To estimate how rapidly cortisol reaches the MIP-facing side of a hydrogel
 before sensor fabrication. This is a TRANSPORT-ONLY screening model: no
 MIP binding, chemical reaction, swelling, or finite sweat-volume depletion.
 
@@ -21,7 +20,7 @@ Numerical method: finite differences in space, backward Euler in time.
 Each timestep solves a tridiagonal linear system.
 """
 
-from pathlib import Path
+from pathlib import Path #to save the generated plots and csv file in the same folder are this script
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.linalg import solve_banded
@@ -43,6 +42,7 @@ def ngml_to_nM(c_ng_ml):
 
 
 def diffusion(L_um=400, D=1e-10, C0_ngml=20, duration=120, nx=101, dt=0.5):
+    #using nx=101 to dividde the 400um  hydrogel into 100 equal spatial interval. (basically no of grid points)
     """Solve 1D Fickian diffusion for a slab with one no-flux boundary.
 
     Parameters
